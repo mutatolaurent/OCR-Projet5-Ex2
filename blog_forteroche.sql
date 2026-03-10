@@ -17,9 +17,11 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+-- Création de la base de données `blog_forteroche`
 CREATE DATABASE IF NOT EXISTS blog_forteroche CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 USE blog_forteroche;
+
 
 
 --
