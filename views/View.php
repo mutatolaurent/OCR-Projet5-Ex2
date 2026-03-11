@@ -27,6 +27,7 @@ class View
      */
     public function render(string $viewName, array $params = []) : void 
     {
+        
         // On s'occupe de la vue envoyée
         $viewPath = $this->buildViewPath($viewName);
         
@@ -48,7 +49,9 @@ class View
     private function _renderViewFromTemplate(string $viewPath, array $params = []) : string
     {  
         if (file_exists($viewPath)) {
+            // print_r($params['articles'][0]->getTitle());
             extract($params); // On transforme les diverses variables stockées dans le tableau "params" en véritables variables qui pourront être lues dans le template.
+            // print_r($articles[0]->getTitle());
             ob_start();
             require($viewPath);
             return ob_get_clean();
