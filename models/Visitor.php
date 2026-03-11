@@ -7,7 +7,7 @@
 class Visitor extends AbstractEntity 
 {
     private int $idArticle;    
-    private ?string $userAgent;
+    private ?string $userAgent = null;
     private ?DateTime $dateCreation = null;
 
     /**

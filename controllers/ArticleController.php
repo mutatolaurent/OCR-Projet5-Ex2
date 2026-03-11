@@ -35,9 +35,10 @@ class ArticleController
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         // Enregistrement de la visite de l'article
-        $visitor = new Visitor();
-        $visitor->setIdArticle($id);
-        $visitor->setUserAgent($_SERVER['HTTP_USER_AGENT'] ?? 'unknown');
+        $visitor = new Visitor([
+            'idArticle' => $id,
+            'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
+        ]);
         $visitorManager = new VisitorManager();
         $visitorManager->trackVisit($visitor);
 
