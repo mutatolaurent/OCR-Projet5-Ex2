@@ -397,6 +397,60 @@ a.info {
   border: 1px solid var(--backgroundColor);
 }
 
+/**
+ * Tableau de monitoring des articles
+ *
+
+/* Tableau général */
+.table-articles {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 40px;
+  font-size: 16px;
+}
+
+/* En-têtes */
+.table-articles thead th {
+  background-color: var(--headerColor);
+  color: white;
+  padding: 12px;
+  text-align: left;
+  position: relative;
+  text-transform: uppercase;
+}
+
+/* CTA de tri */
+.table-articles th .sort {
+  font-size: 12px;
+  margin-left: 5px;
+  color: white;
+  opacity: 0.7;
+}
+
+.table-articles th .sort:hover {
+  opacity: 1;
+}
+
+/* Lignes du tableau */
+.table-articles tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Une ligne sur deux */
+.table-articles tbody tr:nth-child(odd) {
+  background-color: var(--headerPaleColor);
+}
+
+.table-articles tbody tr:nth-child(even) {
+  background-color: white;
+}
+
+/* Survol d'une ligne */
+.table-articles tbody tr:hover {
+  background-color: var(--quoteColor);
+}
+
 /** 
  * Footer global de la page.
  */

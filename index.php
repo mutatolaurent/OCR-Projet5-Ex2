@@ -79,6 +79,11 @@ try {
             $adminController->showVisitors();
             break;
 
+        case 'monitorArticles':
+            $adminController = new AdminController();
+            $adminController->showMonitorArticles();
+            break;
+
         default:
             throw new Exception("La page demandée n'existe pas.");
     }

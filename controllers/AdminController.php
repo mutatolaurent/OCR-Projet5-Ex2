@@ -179,7 +179,7 @@ class AdminController {
         Utils::redirect("admin");
     }
 
-        /**
+    /**
      * Affiche la page d'administration.
      * @return void
      */
@@ -197,6 +197,35 @@ class AdminController {
         $view->render("listVisitors", [
             'visitorsReport' => $visitorsReport
         ]);
+    }
+
+    /**
+     * Affiche la page de monitoring des articles.
+      * @return void
+     */
+    public function showMonitorArticles() : void
+    {
+
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+
+        // Récupère les paramètres de tri et de filtrage
+        $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
+
+
+        // sort = title_desc, title_asc, nbvisit_desc, nbvisit_asc, nbcomment_desc, nbcomment_asc, datepub_desc, datepub_asc
+        
+        // On récupère les dernières visites.
+        // $monitorArticlesManager = new monitorArticlesManager();
+        // $articlesReport = $monitorArticlesManager->getArticlesReport($orderByField , $orderByDirection);
+
+        // On affiche la page des dernières visites.
+        $view = new View("Monitoring des articles");
+        $view->render("monitorArticles");
+        // $view->render("monitorArticles", [
+        //     'articlesReport' => $articlesReport
+        // ]);
     }
 
 }

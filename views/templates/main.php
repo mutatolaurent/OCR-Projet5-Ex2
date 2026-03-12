@@ -33,9 +33,9 @@
                     <div class="menu-deroulant">
                         <span class="menu-titre"><i class="fa-solid fa-bars"></i>Admin</span>
                         <div class="sous-menu">
-                            <a href="index.php">Edition des Articles</a>
-                            <a href="index.php?action=commentaires">Commentaires</a>
-                            <a href="index.php?action=stats">Stats</a>
+                            <a href="index.php?action=admin">Edition des Articles</a>
+                            <a href="index.php?action=monitorArticles">Monitoring des articles</a>
+                            <a href="index.php?action=showVisitors">Stats</a>
                             <a href="index.php?action=disconnectUser">Déconnexion</a>
                         </div>
                     </div>

@@ -54,17 +54,6 @@ class VisitorManager extends AbstractEntityManager
      * Récupère les 20 dernières visites.
      * @return array : un tableau d'objets Visitor.
      */
-    // public function getLastVisits() : array
-    // {
-    //     $sql = "SELECT id_article, user_agent, date_creation FROM visitor ORDER BY date_creation DESC LIMIT 20";
-    //     $result = $this->db->query($sql);
-    //     $visits = [];
-
-    //     while ($visit = $result->fetch()) {
-    //         $visits[] = new Visitor($visit);
-    //     }
-    //     return $visits;
-    // }
     public function getLastVisits(int $limit = 10): array {
         $sql = "SELECT a.title, v.date_creation, v.user_agent 
                 FROM visitor v
