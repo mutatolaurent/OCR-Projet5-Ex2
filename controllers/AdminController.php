@@ -209,23 +209,19 @@ class AdminController {
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
-
         // Récupère les paramètres de tri et de filtrage
         $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
 
-
-        // sort = title_desc, title_asc, nbvisit_desc, nbvisit_asc, nbcomment_desc, nbcomment_asc, datepub_desc, datepub_asc
-        
-        // On récupère les dernières visites.
-        // $monitorArticlesManager = new monitorArticlesManager();
-        // $articlesReport = $monitorArticlesManager->getArticlesReport($orderByField , $orderByDirection);
+        // On récupère les données de monitoring des articles.
+        $monitorArticlesManager = new monitorArticlesManager();
+        $articlesReport = $monitorArticlesManager->getArticlesReport($sortParam);
 
         // On affiche la page des dernières visites.
         $view = new View("Monitoring des articles");
-        $view->render("monitorArticles");
-        // $view->render("monitorArticles", [
-        //     'articlesReport' => $articlesReport
-        // ]);
+        // $view->render("monitorArticles");
+        $view->render("monitorArticles", [
+            'articlesReport' => $articlesReport
+        ]);
     }
 
 }

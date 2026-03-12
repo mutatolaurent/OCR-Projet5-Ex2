@@ -39,6 +39,7 @@ class ArticleController
             'idArticle' => $id,
             'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
         ]);
+        
         $visitorManager = new VisitorManager();
         $visitorManager->trackVisit($visitor);
 

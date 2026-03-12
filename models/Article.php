@@ -4,8 +4,8 @@
  * Entité Article, un article est défini par les champs
  * id, id_user, title, content, date_creation, date_update
  */
- class Article extends AbstractEntity 
- {
+class Article extends AbstractEntity 
+{
     private int $idUser;
     private string $title = "";
     private string $content = "";

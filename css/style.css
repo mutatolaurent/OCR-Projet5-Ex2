@@ -405,7 +405,7 @@ a.info {
 .table-articles {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 40px;
+  margin-top: 10px;
   font-size: 16px;
 }
 
@@ -417,6 +417,26 @@ a.info {
   text-align: left;
   position: relative;
   text-transform: uppercase;
+}
+
+/* Conteneur interne pour empêcher le retour à la ligne */
+.table-articles th .th-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap; /* Empêche le saut de ligne */
+}
+
+/* Icônes Font Awesome */
+.table-articles th .sort i {
+  font-size: 14px;
+  color: white;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.table-articles th .sort:hover i {
+  opacity: 1;
 }
 
 /* CTA de tri */
@@ -449,6 +469,10 @@ a.info {
 /* Survol d'une ligne */
 .table-articles tbody tr:hover {
   background-color: var(--quoteColor);
+}
+
+.table-articles td.num {
+  text-align: center;
 }
 
 /** 

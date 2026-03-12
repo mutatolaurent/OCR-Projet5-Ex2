@@ -22,7 +22,7 @@ class MonitorArticlesManager extends AbstractEntityManager
         "nbcomment_desc"   => ["field" => "comment_count",     "direction" => "DESC"],
         "datepub_asc"      => ["field" => "date_publication",  "direction" => "ASC"],
         "datepub_desc"     => ["field" => "date_publication",  "direction" => "DESC"],
-        ];
+        ]; 
 
         // On vérifie que le critère de tri est valide, sinon on utilise un tri par défaut.
         if ($sortParam && isset($allowedSort[$sortParam])) {
@@ -33,9 +33,9 @@ class MonitorArticlesManager extends AbstractEntityManager
             $orderByField = $allowedSort['nbvisit_desc']['field'];
             $orderByDirection = $allowedSort['nbvisit_desc']['direction'];
         }
-    
+
         // On construit la requête SQL pour récupérer les données des articles avec le nombre de visites et de commentaires, triées selon les critères spécifiés.
-        $sql = "SELECT a.id, a.title, a.date_creation as date_publication, 
+        $sql = "SELECT a.id as id_article, a.title, a.date_creation as date_publication, 
                 (SELECT COUNT(*) FROM visitor v WHERE v.id_article = a.id) AS visit_count,
                 (SELECT COUNT(*) FROM comment c WHERE c.id_article = a.id) AS comment_count
                 FROM article a

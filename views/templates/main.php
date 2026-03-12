@@ -34,7 +34,7 @@
                         <span class="menu-titre"><i class="fa-solid fa-bars"></i>Admin</span>
                         <div class="sous-menu">
                             <a href="index.php?action=admin">Edition des Articles</a>
-                            <a href="index.php?action=monitorArticles">Monitoring des articles</a>
+                            <a href="index.php?action=showMonitorArticles">Monitoring des articles</a>
                             <a href="index.php?action=showVisitors">Stats</a>
                             <a href="index.php?action=disconnectUser">Déconnexion</a>
                         </div>

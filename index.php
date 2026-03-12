@@ -79,7 +79,7 @@ try {
             $adminController->showVisitors();
             break;
 
-        case 'monitorArticles':
+        case 'showMonitorArticles':
             $adminController = new AdminController();
             $adminController->showMonitorArticles();
             break;
