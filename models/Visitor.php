@@ -50,8 +50,22 @@ class Visitor extends AbstractEntity
      * Setter pour la date de création.
      * @param DateTime $dateCreation    
      */
-    public function setDateCreation(DateTime $dateCreation) : void 
+    // public function setDateCreation(DateTime $dateCreation) : void 
+    // {
+    //     $this->dateCreation = $dateCreation;
+    // }
+
+    /**
+     * Setter pour la date de création. Si la date est une string, on la convertit en DateTime.
+     * @param string|DateTime $dateCreation
+     * @param string $format : le format pour la convertion de la date si elle est une string.
+     * Par défaut, c'est le format de date mysql qui est utilisé. 
+     */
+    public function setDateCreation(string|DateTime $dateCreation, string $format = 'Y-m-d H:i:s') : void 
     {
+        if (is_string($dateCreation)) {
+            $dateCreation = DateTime::createFromFormat($format, $dateCreation);
+        }
         $this->dateCreation = $dateCreation;
     }
 

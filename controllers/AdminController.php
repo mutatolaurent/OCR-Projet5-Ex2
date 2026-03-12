@@ -71,8 +71,10 @@ class AdminController {
 
         // On vérifie que le mot de passe est correct.
         if (!password_verify($password, $user->getPassword())) {
+            // echo ("pass: $password , hash: " . $user->getPassword() . " , verify: " . password_verify($password, $user->getPassword())."\n");
             $hash = password_hash($password, PASSWORD_DEFAULT);
             throw new Exception("Le mot de passe est incorrect : $hash");
+            // throw new Exception("Le hash du $password est <br>$hash alors qu'il devrait être <br>" . $user->getPassword());
         }
 
         // On connecte l'utilisateur.
@@ -176,4 +178,25 @@ class AdminController {
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
+
+        /**
+     * Affiche la page d'administration.
+     * @return void
+     */
+    public function showVisitors() : void
+    {
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // On récupère les dernières visites.
+        $visitorManager = new VisitorManager();
+        $visitorsReport = $visitorManager->getLastVisits();
+
+        // On affiche la page des dernières visites.
+        $view = new View("Liste des dernières visites");
+        $view->render("listVisitors", [
+            'visitorsReport' => $visitorsReport
+        ]);
+    }
+
 }

@@ -9,15 +9,16 @@ class Utils {
     /**
      * Convertit une date vers le format de type "Samedi 15 juillet 2023" en francais.
      * @param DateTime $date : la date à convertir.
+     * @param bool $withHours : si true, la date sera convertie avec les heures, minutes et secondes (ex: "Samedi 15 juillet 2023 14:30:00"). Par défaut, c'est false.
      * @return string : la date convertie.
      */
-    public static function convertDateToFrenchFormat(DateTime $date) : string
+    public static function convertDateToFrenchFormat(DateTime $date, bool $withHours = false) : string
     {
         // Attention, s'il y a un soucis lié à IntlDateFormatter c'est qu'il faut
         // activer l'extention intl_date_formater (ou intl) au niveau du serveur apache. 
         // Ca peut se faire depuis php.ini ou parfois directement depuis votre utilitaire (wamp/mamp/xamp)
         $dateFormatter = new IntlDateFormatter('fr_FR', IntlDateFormatter::FULL, IntlDateFormatter::FULL);
-        $dateFormatter->setPattern('EEEE d MMMM Y');
+        $dateFormatter->setPattern('EEEE d MMMM Y' . ($withHours ? ' à HH:mm:ss ' : ''));
         return $dateFormatter->format($date);
     }
 

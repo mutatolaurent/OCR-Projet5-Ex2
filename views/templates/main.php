@@ -13,8 +13,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emilie Forteroche</title>
+    <title><?= $title ?></title>
     <link rel="stylesheet" href="./css/style.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 </head>
 
 <body>
@@ -23,9 +27,22 @@
             <a href="index.php">Articles</a>
             <a href="index.php?action=apropos">À propos</a>
             <?php 
-                // Si on est connecté, on affiche le bouton de déconnexion, sinon, on affiche le bouton de connexion : 
-                if (isset($_SESSION['user'])) {
-                    echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                // Si on est connecté, on affiche le menu d'administration, sinon, on affiche le bouton de connexion : 
+                if (isset($_SESSION['user'])) { 
+                ?>
+                    <div class="menu-deroulant">
+                        <span class="menu-titre"><i class="fa-solid fa-bars"></i>Admin</span>
+                        <div class="sous-menu">
+                            <a href="index.php">Edition des Articles</a>
+                            <a href="index.php?action=commentaires">Commentaires</a>
+                            <a href="index.php?action=stats">Stats</a>
+                            <a href="index.php?action=disconnectUser">Déconnexion</a>
+                        </div>
+                    </div>
+            <?php
+                // echo '<a href="index.php?action=disconnectUser">Déconnexion</a>';
+                } else {
+                    echo '<a href="index.php?action=connectionForm">Connexion</a>';
                 }
                 ?>
         </nav>

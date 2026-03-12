@@ -157,6 +157,64 @@ header > nav > a {
   color: white;
 }
 
+/* Conteneur du menu déroulant */
+.menu-deroulant {
+  position: relative;
+  padding: 20px;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Mot MENU + icône */
+.menu-titre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+}
+
+/* Icône Font Awesome */
+.menu-titre i {
+  font-size: 18px;
+  color: white;
+}
+
+/* Sous-menu caché par défaut */
+.sous-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: var(--headerColor);
+  flex-direction: column;
+  min-width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Liens du sous-menu */
+.sous-menu a {
+  padding: 12px 20px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+/* Apparition du menu au survol */
+.menu-deroulant:hover .sous-menu {
+  display: flex;
+}
+
+/* Effet hover */
+.sous-menu a:hover {
+  background-color: var(--headerPaleColor);
+  color: black;
+}
+
 /**
  * Coeur de page.
  */
