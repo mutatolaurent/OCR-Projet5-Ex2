@@ -31,7 +31,17 @@
                 if (isset($_SESSION['user'])) { 
                 ?>
                     <div class="menu-deroulant">
-                        <span class="menu-titre"><i class="fa-solid fa-bars"></i>Admin</span>
+                        <!-- <span class="menu-titre"><i class="fa-solid fa-bars"></i>Admin</span> -->
+                        <!-- Checkbox invisible -->
+                        <input type="checkbox" id="toggle-admin" class="menu-toggle">
+                        <!-- Le bouton Admin -->
+                        <label for="toggle-admin" class="menu-titre">
+                            <i class="fa-solid fa-bars icon-open"></i>
+                            <i class="fa-solid fa-xmark icon-close"></i>
+                            Admin
+                        </label>
+
+
                         <div class="sous-menu">
                             <a href="index.php?action=admin">Edition des Articles</a>
                             <a href="index.php?action=showMonitorArticles">Monitoring des articles</a>

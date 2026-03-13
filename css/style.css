@@ -157,64 +157,6 @@ header > nav > a {
   color: white;
 }
 
-/* Conteneur du menu déroulant */
-.menu-deroulant {
-  position: relative;
-  padding: 20px;
-  text-transform: uppercase;
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-}
-
-/* Mot MENU + icône */
-.menu-titre {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: white;
-}
-
-/* Icône Font Awesome */
-.menu-titre i {
-  font-size: 18px;
-  color: white;
-}
-
-/* Sous-menu caché par défaut */
-.sous-menu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  background-color: var(--headerColor);
-  flex-direction: column;
-  min-width: 150px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-/* Liens du sous-menu */
-.sous-menu a {
-  padding: 12px 20px;
-  color: white;
-  text-transform: uppercase;
-  font-size: 14px;
-  white-space: nowrap;
-}
-
-/* Apparition du menu au survol */
-.menu-deroulant:hover .sous-menu {
-  display: flex;
-}
-
-/* Effet hover */
-.sous-menu a:hover {
-  background-color: var(--headerPaleColor);
-  color: black;
-}
-
 /**
  * Coeur de page.
  */
@@ -367,6 +309,83 @@ a.info {
  * Partie admin
  */
 
+/* Cache la checkbox */
+.menu-toggle {
+  display: none;
+}
+
+/* Conteneur */
+.menu-deroulant {
+  position: relative;
+  padding: 20px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Bouton Admin */
+.menu-titre {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Icônes */
+.menu-titre i {
+  font-size: 18px;
+  color: white;
+  transition: opacity 0.2s ease;
+}
+
+/* Par défaut : icône hamburger visible, icône croix cachée */
+.icon-open {
+  opacity: 1;
+}
+.icon-close {
+  opacity: 0;
+  position: absolute; /* évite un décalage */
+}
+
+/* Quand la checkbox est cochée : on inverse */
+.menu-toggle:checked + .menu-titre .icon-open {
+  opacity: 0;
+}
+.menu-toggle:checked + .menu-titre .icon-close {
+  opacity: 1;
+}
+
+/* Sous-menu caché par défaut */
+.sous-menu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: var(--headerColor);
+  flex-direction: column;
+  min-width: 180px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Affichage du menu quand la checkbox est cochée */
+.menu-toggle:checked + .menu-titre + .sous-menu {
+  display: flex;
+}
+
+/* Liens */
+.sous-menu a {
+  padding: 12px 20px;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.sous-menu a:hover {
+  background-color: var(--headerPaleColor);
+  color: black;
+}
+
 .adminArticle {
   margin-bottom: 20px;
   background-color: var(--commentPaleColor);
@@ -411,11 +430,11 @@ a.info {
 
 /* En-têtes */
 .table-articles thead th {
-  background-color: var(--headerColor);
+  /* background-color: var(--headerColor); */
+  background-color: var(--commentPaleColor);
   color: white;
   padding: 12px;
   text-align: left;
-  position: relative;
   text-transform: uppercase;
 }
 
@@ -439,18 +458,6 @@ a.info {
   opacity: 1;
 }
 
-/* CTA de tri */
-.table-articles th .sort {
-  font-size: 12px;
-  margin-left: 5px;
-  color: white;
-  opacity: 0.7;
-}
-
-.table-articles th .sort:hover {
-  opacity: 1;
-}
-
 /* Lignes du tableau */
 .table-articles tbody td {
   padding: 12px;
@@ -471,6 +478,7 @@ a.info {
   background-color: var(--quoteColor);
 }
 
+/* Positionnement des valeurs numériques */
 .table-articles td.num {
   text-align: center;
 }

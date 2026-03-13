@@ -213,7 +213,7 @@ class AdminController {
         $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
 
         // On récupère les données de monitoring des articles.
-        $monitorArticlesManager = new monitorArticlesManager();
+        $monitorArticlesManager = new MonitorArticlesManager();
         $articlesReport = $monitorArticlesManager->getArticlesReport($sortParam);
 
         // On affiche la page des dernières visites.

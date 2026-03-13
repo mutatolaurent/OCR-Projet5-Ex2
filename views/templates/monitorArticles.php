@@ -21,21 +21,21 @@
       </th>
       <th>
         <div class="th-content">
-          Nb Vues
+          Vues
           <a href="index.php?action=showMonitorArticles&sort=nbvisit_asc" class="sort asc"><i class="fa-solid fa-arrow-up"></i></a>
           <a href="index.php?action=showMonitorArticles&sort=nbvisit_desc" class="sort desc"><i class="fa-solid fa-arrow-down"></i></a>
         </div>
       </th>
       <th>
         <div class="th-content">
-          Nb Com.
+          Commentaires
           <a href="index.php?action=showMonitorArticles&sort=nbcomment_asc" class="sort asc"><i class="fa-solid fa-arrow-up"></i></a>
           <a href="index.php?action=showMonitorArticles&sort=nbcomment_desc" class="sort desc"><i class="fa-solid fa-arrow-down"></i></a>
         </div>
       </th>
       <th>
         <div class="th-content">
-          Publication
+          Date de publication
           <a href="index.php?action=showMonitorArticles&sort=datepub_asc" class="sort asc"><i class="fa-solid fa-arrow-up"></i></a>
           <a href="index.php?action=showMonitorArticles&sort=datepub_desc" class="sort desc"><i class="fa-solid fa-arrow-down"></i></a>
         </div>
@@ -47,9 +47,9 @@
     <?php foreach ($articlesReport as $articleReport) {  ?>
     <tr>
       <td><a href="index.php?action=showArticle&id=<?= $articleReport->getIdArticle() ?>"><?= $articleReport->getTitle() ?></a></td>
-      <td class="num"><?= $articleReport->getVisitCount() ?></td>
-      <td class="num"><?= $articleReport->getCommentCount() ?></td>
-      <td><?= ucfirst(Utils::convertDateToFrenchFormat($articleReport->getDatePublication(),true)) ?></td>
+      <td class="num"><?= $articleReport->getVisitCount() ?> vue(s)</td>
+      <td class="num"><?= $articleReport->getCommentCount() ?> commentaire(s)</td>
+      <td><?= ucfirst(Utils::convertDateToFrenchFormat($articleReport->getDatePublication())) ?></td>
     </tr>
     <?php } ?>
   </tbody>
