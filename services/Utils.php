@@ -71,8 +71,9 @@ class Utils {
                 $finalString .= "<p>$line</p>";
             }
         }
-        
+
         return $finalString;
+
     }
 
     /**

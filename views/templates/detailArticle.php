@@ -30,10 +30,19 @@
                 echo '  <div class="smiley">☻</div>';
                 echo '  <div class="detailComment">';
                 echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
-                echo '      <p class="content">' . Utils::format($comment->getContent()) . '</p>';
-                echo '  </div>';
+                echo '      <div class="content">' . Utils::format($comment->getContent()) . '</div>';
+                // Si l'utilisateur est connecté, on affiche le bouton de suppression du commentaire :
+                if (isset($_SESSION['user'])) {
+                    echo '  <div>';
+                    echo '    <a class="submit" href="index.php?action=deleteComment&idComment=' . 
+                                $comment->getId() . '&idArticle=' . $article->getId() . '" ' . 
+                                Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . 
+                                '>Supprimer ce commentaire</a>';
+                    echo '  </div>';
+                }
+                echo '  </div>';     
                 echo '</li>';
-            }               
+            }   
             echo '</ul>';
         } 
     ?>

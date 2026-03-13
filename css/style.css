@@ -112,6 +112,10 @@ form .formGrid .submit {
   border: none;
 }
 
+.detailComment .submit {
+  margin-top: 20px;
+}
+
 /**
  * Coin replié des formulaires
  */
@@ -282,7 +286,7 @@ a.info {
 }
 
 .detailComment .content {
-  margin: 5px 0 5px 0;
+  margin: 5px 0 10px 0;
 }
 
 /* Page d'erreur */

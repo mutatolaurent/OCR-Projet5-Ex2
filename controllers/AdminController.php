@@ -174,7 +174,7 @@ class AdminController {
         // On supprime l'article.
         $articleManager = new ArticleManager();
         $articleManager->deleteArticle($id);
-       
+
         // On redirige vers la page d'administration.
         Utils::redirect("admin");
     }
@@ -222,6 +222,32 @@ class AdminController {
         $view->render("monitorArticles", [
             'articlesReport' => $articlesReport
         ]);
+    }
+
+    /**
+     * Suppression d'un commentaire.
+     * @return void
+     */
+    public function deleteComment() : void
+    {
+        $this->checkIfUserIsConnected();
+
+        // On récupère l'id du commentaire à supprimer et l'id de l'article associé 
+        // pour rediriger vers la bonne page après suppression.
+        $idComment = Utils::request("idComment", -1);
+        if ($idComment<0) {
+            throw new Exception("Le commentaire demandé n'existe pas.");
+        }
+        $idArticle = Utils::request("idArticle", -1);
+
+        // On supprime le commentaire.
+        $commentManager = new CommentManager();
+        if (!$commentManager->deleteComment($idComment)) {
+            throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
+        }
+
+        // On redirige vers la page courante (détail de l'article).
+        Utils::redirect("showArticle",['id' => $idArticle]);
     }
 
 }
