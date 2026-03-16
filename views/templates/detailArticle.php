@@ -1,8 +1,10 @@
 <?php
+
     /**
      * Ce template affiche un article et ses commentaires.
      * Il affiche également un formulaire pour ajouter un commentaire.
      */
+
 ?>
 
 <article class="mainArticle">
@@ -20,31 +22,32 @@
 
 <div class="comments">
     <h2 class="commentsTitle">Vos Commentaires</h2>
-    <?php 
-        if (empty($comments)) {
-            echo '<p class="info">Aucun commentaire pour cet article.</p>';
-        } else {
-            echo '<ul>';
-            foreach ($comments as $comment) {
-                echo '<li>';
-                echo '  <div class="smiley">☻</div>';
-                echo '  <div class="detailComment">';
-                echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) . ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
-                echo '      <div class="content">' . Utils::format($comment->getContent()) . '</div>';
-                // Si l'utilisateur est connecté, on affiche le bouton de suppression du commentaire :
-                if (isset($_SESSION['user'])) {
-                    echo '  <div>';
-                    echo '    <a class="submit" href="index.php?action=deleteComment&idComment=' . 
-                                $comment->getId() . '&idArticle=' . $article->getId() . '" ' . 
-                                Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") . 
-                                '>Supprimer ce commentaire</a>';
-                    echo '  </div>';
-                }
-                echo '  </div>';     
-                echo '</li>';
-            }   
-            echo '</ul>';
-        } 
+    <?php
+    if (empty($comments)) {
+        echo '<p class="info">Aucun commentaire pour cet article.</p>';
+    } else {
+        echo '<ul>';
+        foreach ($comments as $comment) {
+            echo '<li>';
+            echo '  <div class="smiley">☻</div>';
+            echo '  <div class="detailComment">';
+            echo '      <h3 class="info">Le ' . Utils::convertDateToFrenchFormat($comment->getDateCreation()) .
+                        ", " . Utils::format($comment->getPseudo()) . ' a écrit :</h3>';
+            echo '      <div class="content">' . Utils::format($comment->getContent()) . '</div>';
+            // Si l'utilisateur est connecté, on affiche le bouton de suppression du commentaire :
+            if (isset($_SESSION['user'])) {
+                echo '  <div>';
+                echo '    <a class="submit" href="index.php?action=deleteComment&idComment=' .
+                            $comment->getId() . '&idArticle=' . $article->getId() . '" ' .
+                            Utils::askConfirmation("Êtes-vous sûr de vouloir supprimer ce commentaire ?") .
+                            '>Supprimer ce commentaire</a>';
+                echo '  </div>';
+            }
+            echo '  </div>';
+            echo '</li>';
+        }
+        echo '</ul>';
+    }
     ?>
 
     <form action="index.php" method="post" class="foldedCorner">
