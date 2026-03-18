@@ -31,6 +31,7 @@ class ArticleController
             throw new Exception("L'article demandé n'existe pas.");
         }
 
+        // Récupération des commentaires de l'article.
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
@@ -40,9 +41,20 @@ class ArticleController
             'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
         ]);
 
+        // Enregistrement de la visite de l'article
+        $visit = new ArticleVisits([
+            'idArticle' => $id,
+        ]);
+
+        // On utilise le ArticleVisitsManager pour enregistrer la visite de l'article.
+        $articleVisitsManager = new ArticleVisitsManager();
+        $articleVisitsManager->trackVisit($visit);
+
+        // On utilise le VisitorManager pour enregistrer la visite de l'article.
         $visitorManager = new VisitorManager();
         $visitorManager->trackVisit($visitor);
 
+        // Affichage de la vue de détail de l'article.
         $view = new View($article->getTitle());
         $view->render("detailArticle", ['article' => $article, 'comments' => $comments]);
     }

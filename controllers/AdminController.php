@@ -223,6 +223,31 @@ class AdminController
     }
 
     /**
+     * Affiche la page de monitoring des articles.
+      * @return void
+     */
+    public function showMonitorArticleVisits(): void
+    {
+
+        // On vérifie que l'utilisateur est connecté.
+        $this->checkIfUserIsConnected();
+
+        // Récupère les paramètres de tri et de filtrage
+        $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
+
+        // On récupère les données de monitoring des articles.
+        $monitorArticleVisitsManager = new MonitorArticleVisitsManager();
+        $articleVisitsReport = $monitorArticleVisitsManager->getArticlesReport($sortParam);
+
+        // On affiche la page des monitoring des articles
+        $view = new View("Monitoring des articles");
+        // $view->render("monitorArticles");
+        $view->render("monitorArticleVisits", [
+            'articleVisitsReport' => $articleVisitsReport
+        ]);
+    }
+
+    /**
      * Suppression d'un commentaire.
      * @return void
      */
