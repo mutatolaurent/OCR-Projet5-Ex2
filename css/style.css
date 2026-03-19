@@ -146,6 +146,9 @@ header {
   width: 100%;
   margin-bottom: 30px;
   background-color: var(--headerPaleColor);
+  /* position: sticky;
+  top: 0;
+  z-index: 1000; */
 }
 
 header > nav {
@@ -440,6 +443,10 @@ a.info {
   padding: 12px;
   text-align: left;
   text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 /* Conteneur interne pour empêcher le retour à la ligne */

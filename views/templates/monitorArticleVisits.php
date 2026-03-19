@@ -79,7 +79,7 @@
       <td class="num"><?= $articleVisitReport->getVisitCount() ?> vue(s)</td>
       <td class="num"><?= $articleVisitReport->getCommentCount() ?> commentaire(s)</td>
       <td><?= ucfirst(Utils::convertDateToFrenchFormat($articleVisitReport->getDatePublication())) ?></td>
-      <td><?= ucfirst(Utils::convertDateToFrenchFormat($articleVisitReport->getDateLastVisit(), true)) ?></td>
+      <td><?= $articleVisitReport->getDateLastVisit() !== null ? ucfirst(Utils::convertDateToFrenchFormat($articleVisitReport->getDateLastVisit(), true)) : 'jamais visité' ?></td>
     </tr>
     <?php } ?>
   </tbody>

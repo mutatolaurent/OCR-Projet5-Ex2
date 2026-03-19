@@ -178,51 +178,6 @@ class AdminController
     }
 
     /**
-     * Affiche la page d'administration.
-     * @return void
-     */
-    public function showVisitors(): void
-    {
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
-
-        // On récupère les dernières visites.
-        $visitorManager = new VisitorManager();
-        $visitorsReport = $visitorManager->getLastVisits();
-
-        // On affiche la page des dernières visites.
-        $view = new View("Liste des dernières visites");
-        $view->render("listVisitors", [
-            'visitorsReport' => $visitorsReport
-        ]);
-    }
-
-    /**
-     * Affiche la page de monitoring des articles.
-      * @return void
-     */
-    public function showMonitorArticles(): void
-    {
-
-        // On vérifie que l'utilisateur est connecté.
-        $this->checkIfUserIsConnected();
-
-        // Récupère les paramètres de tri et de filtrage
-        $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
-
-        // On récupère les données de monitoring des articles.
-        $monitorArticlesManager = new MonitorArticlesManager();
-        $articlesReport = $monitorArticlesManager->getArticlesReport($sortParam);
-
-        // On affiche la page des dernières visites.
-        $view = new View("Monitoring des articles");
-        // $view->render("monitorArticles");
-        $view->render("monitorArticles", [
-            'articlesReport' => $articlesReport
-        ]);
-    }
-
-    /**
      * Affiche la page de monitoring des articles.
       * @return void
      */

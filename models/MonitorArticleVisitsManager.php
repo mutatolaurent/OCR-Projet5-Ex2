@@ -39,10 +39,10 @@ class MonitorArticleVisitsManager extends AbstractEntityManager
 
         // On construit la requête SQL pour récupérer les données des articles
         // avec le nombre de visites et de commentaires, triées selon les critères spécifiés.
-        $sql = "SELECT a.id as id_article, a.title, a.date_creation as date_publication, b.nb_visits as visit_count, b.last_visit_at as date_last_visit,
+        $sql = "SELECT a.id as id_article, a.title, a.date_creation as date_publication, COALESCE(b.nb_visits, 0) as visit_count, b.last_visit_at as date_last_visit,
                 (SELECT COUNT(*) FROM comment c WHERE c.id_article = a.id) AS comment_count
                 FROM article a
-                INNER JOIN article_visits b ON a.id = b.id_article
+                LEFT JOIN article_visits b ON a.id = b.id_article
                 ORDER BY $orderByField $orderByDirection";
 
         $result = $this->db->query($sql);

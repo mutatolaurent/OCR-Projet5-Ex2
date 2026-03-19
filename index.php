@@ -79,16 +79,6 @@ try {
             $adminController->deleteComment();
             break;
 
-        case 'showVisitors':
-            $adminController = new AdminController();
-            $adminController->showVisitors();
-            break;
-
-        case 'showMonitorArticles':
-            $adminController = new AdminController();
-            $adminController->showMonitorArticles();
-            break;
-
         case 'showMonitorArticleVisits':
             $adminController = new AdminController();
             $adminController->showMonitorArticleVisits();

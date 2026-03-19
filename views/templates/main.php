@@ -45,8 +45,7 @@
 
                     <div class="sous-menu">
                         <a href="index.php?action=admin">Edition des Articles</a>
-                        <a href="index.php?action=showMonitorArticles">Monitoring des articles</a>
-                        <a href="index.php?action=showMonitorArticleVisits">Monitoring des visites</a>
+                        <a href="index.php?action=showMonitorArticleVisits">Monitoring des articles</a>
                         <a href="index.php?action=disconnectUser">Déconnexion</a>
                     </div>
                 </div>
@@ -61,6 +60,7 @@
     </header>
 
     <main>    
+
         <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
     </main>
     

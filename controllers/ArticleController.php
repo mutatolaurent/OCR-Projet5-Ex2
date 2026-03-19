@@ -36,12 +36,6 @@ class ArticleController
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
         // Enregistrement de la visite de l'article
-        $visitor = new Visitor([
-            'idArticle' => $id,
-            'userAgent' => $_SERVER['HTTP_USER_AGENT'] ?? 'unknown'
-        ]);
-
-        // Enregistrement de la visite de l'article
         $visit = new ArticleVisits([
             'idArticle' => $id,
         ]);
@@ -49,10 +43,6 @@ class ArticleController
         // On utilise le ArticleVisitsManager pour enregistrer la visite de l'article.
         $articleVisitsManager = new ArticleVisitsManager();
         $articleVisitsManager->trackVisit($visit);
-
-        // On utilise le VisitorManager pour enregistrer la visite de l'article.
-        $visitorManager = new VisitorManager();
-        $visitorManager->trackVisit($visitor);
 
         // Affichage de la vue de détail de l'article.
         $view = new View($article->getTitle());

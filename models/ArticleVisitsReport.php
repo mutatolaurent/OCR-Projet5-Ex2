@@ -109,21 +109,21 @@ class ArticleVisitsReport extends AbstractEntity
     }
 
     /**
-     * Getter pour la date de dernière visite.
-     * @return DateTime
+     * Getter pour la date de dernière visite, null si encore jamais visité.
+     * @return DateTime|null
      */
-    public function getDateLastVisit(): DateTime
+    public function getDateLastVisit(): DateTime|null
     {
         return $this->dateLastVisit;
     }
 
     /**
      * Setter pour la date de dernière visite. Si la date est une string, on la convertit en DateTime.
-     * @param string|DateTime $dateLastVisit
+     * @param string|DateTime|null $dateLastVisit
      * @param string $format : le format pour la convertion de la date si elle est une string.
      * Par défaut, c'est le format de date mysql qui est utilisé.
      */
-    public function setDateLastVisit(string|DateTime $dateLastVisit, string $format = 'Y-m-d H:i:s'): void
+    public function setDateLastVisit(string|DateTime|null $dateLastVisit, string $format = 'Y-m-d H:i:s'): void
     {
         if (is_string($dateLastVisit)) {
             $dateLastVisit = DateTime::createFromFormat($format, $dateLastVisit);
