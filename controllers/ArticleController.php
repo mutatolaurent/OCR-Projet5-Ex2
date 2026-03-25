@@ -35,14 +35,18 @@ class ArticleController
         $commentManager = new CommentManager();
         $comments = $commentManager->getAllCommentsByArticleId($id);
 
-        // Enregistrement de la visite de l'article
-        $visit = new ArticleVisits([
-            'idArticle' => $id,
-        ]);
+        // Si l'utilisateur n'est pas connecté (non administrateur), on enregistre la visite de l'article.
+        if (!isset($_SESSION['user'])) {
 
-        // On utilise le ArticleVisitsManager pour enregistrer la visite de l'article.
-        $articleVisitsManager = new ArticleVisitsManager();
-        $articleVisitsManager->trackVisit($visit);
+            // Enregistrement de la visite de l'article
+            $visit = new ArticleVisits([
+                'idArticle' => $id,
+            ]);
+
+            // On utilise le ArticleVisitsManager pour enregistrer la visite de l'article.
+            $articleVisitsManager = new ArticleVisitsManager();
+            $articleVisitsManager->trackVisit($visit);
+        }
 
         // Affichage de la vue de détail de l'article.
         $view = new View($article->getTitle());

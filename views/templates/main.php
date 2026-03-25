@@ -60,7 +60,6 @@
     </header>
 
     <main>    
-
         <?= $content /* Ici est affiché le contenu réel de la page. */ ?>
     </main>
     

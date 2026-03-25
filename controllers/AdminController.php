@@ -220,7 +220,7 @@ class AdminController
 
         // On supprime le commentaire.
         $commentManager = new CommentManager();
-        if (!$commentManager->deleteComment($idComment)) {
+        if (!$commentManager->deleteCommentById($idComment)) {
             throw new Exception("Une erreur est survenue lors de la suppression du commentaire.");
         }
 
