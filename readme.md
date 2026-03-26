@@ -32,16 +32,16 @@ L’application repose sur une architecture **MVC**.
 [Navigateur]
      │
      ▼
-index.php (Routeur)
+[Routeur] (index.php)
      │
      ▼
 [Controller ......................]
-     │                          │
-     ▼                          ▼
-[Model]                       [View]
+     │        ▲                 │
+     ▼        │                 ▼
+[Model .............]         [View]
 (Managers + Entités)          (Templates PHP + HTML)
-     │                          │
-     ▼                          ▼
+     │        ▲                 │
+     ▼        │                 ▼
 [Base de données]             [HTML généré]
                                 │
                                 ▼
@@ -92,12 +92,30 @@ FOREIGN KEY (id_article) REFERENCES article(id) ON DELETE CASCADE
 
 #### Principe du comptage du nombre de vues
 
-- J'ai intégré un dispositif de comptage du nombre de vues au niveau de la méthode "showArticle" du contrôleur "ArticleController".
-- Ce dispositif ne fonctionne que pour les utilisateurs non connectés (les lecteurs du blog).
-- Ainsi à chaque fois qu'un article est affiché, le dispositif incrémente le nombre de vues.
-- Ce dispositif est composé de 2 classes de type "modèle" :
-  - la classe entité : "ArticleVisits"
-  - la classe manager : "ArticleVisitsManager" dont on injecte un objet "ArticleVisits" et qui dispose d'une méthode "trackVisit" pour mettre à jour le compteur de visites et enregistrer la date de la visite.
+Le dispositif est composé de 2 classes de type "Modèle" :
+
+- la classe entité : **"ArticleVisits"**
+- la classe manager : **"ArticleVisitsManager"** qui dispose de 2 méthodes :
+  - **getVisitsById** : Récupère les statistiques de visites d'un article par son id.
+  - **trackVisit** : Incrémente le compteur de visites et enregistre la date de la visite.
+
+J'ai intégré un dispositif de comptage du nombre de vues au niveau de la méthode "showArticle" du contrôleur "ArticleController".
+
+```PHP
+// Récupération des statistiques de visites de l'article.
+$articleVisitsManager = new ArticleVisitsManager();
+$articleVisit = $articleVisitsManager->getVisitById($id);
+// ......
+// On enregistre la visite de l'article.
+$articleVisitsManager->trackVisit($articleVisit);
+```
+
+Ainsi à chaque fois qu'un article est affiché, le dispositif incrémente le nombre de vues.
+
+Par contre, Ce dispositif :
+
+- ne fonctionne que pour les utilisateurs non connectés (les lecteurs du blog).
+- ne s'active que si la dernière visite à eu lieu depuis au moins un certain temps. Ainsi on évite de compter des vues si le lecteur raffraichie plusieurs fois la page ou s'il enregistre un commentaire. Ce temps (en secondes) est fixée par la constante TTL_VISIT.
 
 #### Principe de récupération des informations à afficher avec tri dynamique
 
