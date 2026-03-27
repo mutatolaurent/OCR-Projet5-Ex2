@@ -318,3 +318,10 @@ Pour résoudre le problème, j'ai adapté les attributs CSS des cards.
 Cette option de menu n'était jamais proposée.
 
 J'ai adapté le layout main.php pour faire apparaître cette option lorsque l'utilisateur n'est pas connecté
+
+## Lancez le projet !
+
+Pour la configuration du projet renomez le fichier _\_config.php_ (dans le dossier _config_) en _config.php_ et éditez le si nécessaire.
+Ce fichier contient notamment les informations de connextion à la base de données et la valeur de TTL_VISIT
+
+Pour vous connecter en partie admin, le login est "Emilie" et le mot de passe est "password" (attention aux majuscules)
