@@ -86,8 +86,7 @@ id INT AUTO_INCREMENT PRIMARY KEY,
 id_article INT NOT NULL,
 nb_visits INT DEFAULT 0,
 last_visit_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-FOREIGN KEY (id_article) REFERENCES article(id) ON DELETE CASCADE
-);
+FOREIGN KEY (id_article) REFERENCES article(id) ON DELETE CASCADE);
 ```
 
 #### Principe du comptage du nombre de vues
@@ -96,7 +95,7 @@ Le dispositif est composé de 2 classes de type "Modèle" :
 
 - la classe entité : **"ArticleVisits"**
 - la classe manager : **"ArticleVisitsManager"** qui dispose de 2 méthodes :
-  - **getVisitsById** : Récupère les statistiques de visites d'un article par son id.
+  - **getVisitsByArticleId** : Récupère les statistiques de visites d'un article par son id.
   - **trackVisit** : Incrémente le compteur de visites et enregistre la date de la visite.
 
 J'ai intégré un dispositif de comptage du nombre de vues au niveau de la méthode "showArticle" du contrôleur "ArticleController".
@@ -104,7 +103,7 @@ J'ai intégré un dispositif de comptage du nombre de vues au niveau de la méth
 ```PHP
 // Récupération des statistiques de visites de l'article.
 $articleVisitsManager = new ArticleVisitsManager();
-$articleVisit = $articleVisitsManager->getVisitById($id);
+$articleVisit = $articleVisitsManager->getVisitByArticleId($id);
 // ......
 // On enregistre la visite de l'article.
 $articleVisitsManager->trackVisit($articleVisit);

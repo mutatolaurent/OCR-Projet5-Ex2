@@ -48,7 +48,7 @@ class ArticleController
 
             // Récupération des statistiques de visites de l'article.
             $articleVisitsManager = new ArticleVisitsManager();
-            $articleVisits = $articleVisitsManager->getVisitById($id);
+            $articleVisits = $articleVisitsManager->getVisitByArticleId($id);
 
             // Si l'article n'avait pas encore de statistiques, on en crée une nouvelle.
             if (!$articleVisits) {

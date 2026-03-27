@@ -47,7 +47,7 @@ class ArticleVisitsManager extends AbstractEntityManager
      * @param int $id
      * @return ArticleVisits|null
      */
-    public function getVisitById(int $id): ?ArticleVisits
+    public function getVisitByArticleId(int $id): ?ArticleVisits
     {
         $sql = "SELECT * FROM article_visits WHERE id_article = :id";
         $result = $this->db->query($sql, ['id' => $id]);
