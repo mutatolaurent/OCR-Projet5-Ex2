@@ -130,26 +130,23 @@ FROM article a
 LEFT JOIN article_visits b ON a.id = b.id_article
 ```
 
-Rappel du besoin (suite) : Ce tableau pourra être trié (croissant et décroissant) en fonction de ces quatres critères (vues, commentaires, date et titre).
-Pour répondre à cette demande j'ajoute à la requête une instruction
+Le résultat de l'exécution de cette requête permet de constituer un tableau d'objets de type **ArticleVisitsReport**.
 
-```sql
-ORDER BY [nom du champ] [direction]
-```
+Rappel du besoin (suite) : Ce tableau pourra être trié (croissant et décroissant) en fonction de ces 4 critères (titre de l'article, nombre de vues, nombre de commentaires et date de publication).
 
-Où :
+La mise en oeuvre des différents tris est entièrement réalisée en PHP. Je m'appuie sur 2 paramètres passés dans l'URL d'appel à la page :
 
-- [nom du champ] peut prendre une des valeurs suivantes : title, date_publication, visit_count, comment_count ou date_last_visit
-- [direction] peut prendre une des valeurs suivantes : ASC (tri croissant) ou DESC (tri décroissant)
+- [sortField] peut prendre une des valeurs suivantes : title, date_publication, visit_count, comment_count ou date_last_visit
+- [orderBy] peut prendre une des valeurs suivantes : asc (tri croissant) ou desc (tri décroissant)
 
-Le champ et la direction du tri sont déterminés via un parmètre qui est passé dans l'URL d'appel à la page.
+Je soumets ensuite le tableau d'objets **ArticleVisitsReport** à l'instruction php **usort** en lui passant en paramètre les valeurs de **sortField** et **orderBy**.
 
 #### Principe de génération du tableau d'affichage des résultats
 
 ##### Route
 
 - action=showMonitorArticleVisits
-- paramètre optionnel : sort : prend pour valeur Le champ et la direction du tri. S'il est absent, le tableau sera trié par défaut sur le nombre de vues dans l'ordre décroissant.
+- paramètres optionnels : **sortField** et **orderBy** : prennent pour valeur respective : Le champ et la direction du tri. S'ils sont absent, le tableau sera trié par défaut sur le nombre de vues dans l'ordre décroissant.
 
 ##### Flux d'exécution
 
@@ -163,20 +160,21 @@ La méthode "showMonitorArticleVisits()" :
 - Vérifie que l'on est bien dans une session d'un utilisateur connecté (un admin).
 - Récupère la valeur du paramètre "sort" si elle existe.
 - Instancie un objet de la classe modèle "MonitorArticleVisitsManager()".
-- Appelle la méthode "getArticlesReport()" en lui passant en paramètre les critères du tri.
+- Appelle la méthode "getArticlesReport()" en lui passant en paramètre les critères du tri (sortField et orderBy).
 
 la méthode "getArticlesReport()" :
 
 - Vérifie que les critères de tri sont valides.
 - Prépare la requête SQL en fonction des critères de tri.
 - Exécute la requête.
-- Retourne à la méthode "showMonitorArticleVisits()", du contrôleur, le résultat de la requête sous la forme d'un tableau d'objets ArticleVisitsReport.
+- Effectue le tri selon les critères.
+- Retourne à la méthode "showMonitorArticleVisits()", du contrôleur, un tableau d'objets ArticleVisitsReport trié.
 
 La méthode showMonitorArticleVisits() :
 
 - Instancie un objet de la classe "View" et lui passant en paramètre le titre de la page : "Monitoring des articles".
 - Appelle la méthode "render" en lui passant en paramètre :
-  - le tableau des objets "ArticleVisitsReport" (résultat de la requête triée).
+  - le tableau des objets "ArticleVisitsReport" (résultat du tri).
   - le nom de la vue dédiée à l'affichage : "monitorArticleVisits".
 
 La méthode render() :
@@ -194,13 +192,13 @@ Pour afficher les résultats j'ai opté pour un tableau HTML structuré balises 
 <table></table>
 ```
 
-C'est un tableau à 5 colonnes : Titre, Vues, Commentaires, Publié le,Dernière visite le
+C'est un tableau à 5 colonnes : Titre, Vues, Commentaires, Publié le, Dernière visite le
 
 Pour gérer les tris, j'ai ajouté au niveau de l'entête de chaque colonne 2 icônes flèches (font awesome) :
 
 - une flèche vers le haut qui symbolise le tri croissant
 - une flèche vers le bas qui symbolise le tri décroissant
-  Chaque flèche est cliquable : c'est un lien vers la page courante avec le paramètre "sort" initialisé avec la bonne valeur du critère de tri.
+  Chaque flèche est cliquable : c'est un lien vers la page courante avec les paramètres **sortField** et **orderBy** initialisés avec les différentes options de tri.
 
 Pour gérer l'affichage d'une ligne sur deux avec un fond de couleur différent, j'ai utilisé la pseudo-classe CSS **nth-child()** qui sélectionne un élément en fonction de sa position parmi ses frères.
 
