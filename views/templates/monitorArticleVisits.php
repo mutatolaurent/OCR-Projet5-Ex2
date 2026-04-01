@@ -14,20 +14,20 @@
       <th>
         <div class="th-content">
           Titre
-          <a href="index.php?action=showMonitorArticleVisits&sort=title_asc" class="sort asc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=title&orderBy=asc" class="sort asc">
             <i class="fa-solid fa-arrow-up"></i>
           </a>
-          <a href="index.php?action=showMonitorArticleVisits&sort=title_desc" class="sort desc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=title&orderBy=desc" class="sort desc">
             <i class="fa-solid fa-arrow-down"></i></a>
         </div>
       </th>
       <th>
         <div class="th-content">
           Vues
-          <a href="index.php?action=showMonitorArticleVisits&sort=nbvisit_asc" class="sort asc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=visitCount&orderBy=asc" class="sort asc">
             <i class="fa-solid fa-arrow-up"></i>
           </a>
-          <a href="index.php?action=showMonitorArticleVisits&sort=nbvisit_desc" class="sort desc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=visitCount&orderBy=desc" class="sort desc">
             <i class="fa-solid fa-arrow-down"></i>
           </a>
         </div>
@@ -35,10 +35,10 @@
       <th>
         <div class="th-content">
           Commentaires
-          <a href="index.php?action=showMonitorArticleVisits&sort=nbcomment_asc" class="sort asc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=commentCount&orderBy=asc" class="sort asc">
             <i class="fa-solid fa-arrow-up"></i>
           </a>
-          <a href="index.php?action=showMonitorArticleVisits&sort=nbcomment_desc" class="sort desc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=commentCount&orderBy=desc" class="sort desc">
             <i class="fa-solid fa-arrow-down"></i>
           </a>
         </div>
@@ -46,10 +46,10 @@
       <th>
         <div class="th-content">
           Publier le
-          <a href="index.php?action=showMonitorArticleVisits&sort=datepub_asc" class="sort asc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=datePublication&orderBy=asc" class="sort asc">
             <i class="fa-solid fa-arrow-up"></i>
           </a>
-          <a href="index.php?action=showMonitorArticleVisits&sort=datepub_desc" class="sort desc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=datePublication&orderBy=desc" class="sort desc">
             <i class="fa-solid fa-arrow-down"></i>
           </a>
         </div>
@@ -57,10 +57,10 @@
       <th>
         <div class="th-content">
           Dernière visite le
-          <a href="index.php?action=showMonitorArticleVisits&sort=datelastvisit_asc" class="sort asc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=dateLastVisit&orderBy=asc" class="sort asc">
             <i class="fa-solid fa-arrow-up"></i>
           </a>
-          <a href="index.php?action=showMonitorArticleVisits&sort=datelastvisit_desc" class="sort desc">
+          <a href="index.php?action=showMonitorArticleVisits&sortField=dateLastVisit&orderBy=desc" class="sort desc">
             <i class="fa-solid fa-arrow-down"></i>
           </a>
         </div>

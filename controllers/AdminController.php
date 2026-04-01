@@ -187,12 +187,13 @@ class AdminController
         // On vérifie que l'utilisateur est connecté.
         $this->checkIfUserIsConnected();
 
-        // Récupère les paramètres de tri et de filtrage
-        $sortParam = Utils::request("sort", "nbvisit_desc"); // tri par défaut par nombre de visites
+        // Récupère les critères de tri depuis les paramètres de la requête.
+        $sortField = Utils::request("sortField", "nbvisit_desc"); // tri par défaut par nombre de visites
+        $OrderBy = Utils::request("orderBy", "desc"); // tri par défaut décroissant
 
         // On récupère les données de monitoring des articles.
         $monitorArticleVisitsManager = new MonitorArticleVisitsManager();
-        $articleVisitsReport = $monitorArticleVisitsManager->getArticlesReport($sortParam);
+        $articleVisitsReport = $monitorArticleVisitsManager->getArticlesReport($sortField, $OrderBy);
 
         // On affiche la page des monitoring des articles
         $view = new View("Monitoring des articles");
